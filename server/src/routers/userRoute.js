@@ -1,20 +1,12 @@
-import {
-	deleteMe,
-	getAllUsers,
-	getMe,
-	getUserById,
-	getUserByParams,
-	updateMe,
-} from "../controllers/userController.js";
-import { protect, restrictTo } from "../middelwares/authMiddelware.js";
+import { deleteMe, getMe, updateMe } from "../controllers/userController.js";
+import { protect } from "../middelwares/authMiddelware.js";
 import express from "express";
 
-const Route = express.Router();
+const Router = express.Router();
 
 // add protect func to all routes
-Route.use(protect);
+Router.use(protect);
 
-Route.get("/allUsers", restrictTo("admin"), getAllUsers);
-Route.route("/").get(getMe).patch(updateMe).delete(deleteMe).post(getUserById);
-Route.get("/:id", getUserByParams);
-export default Route;
+Router.route("/").get(getMe).patch(updateMe).delete(deleteMe);
+
+export default Router;

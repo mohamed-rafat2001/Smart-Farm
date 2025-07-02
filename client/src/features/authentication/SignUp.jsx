@@ -164,7 +164,7 @@ function SignUp() {
       <div className="flex justify-center gap-x-1 pt-2 text-xl text-stone-400">
         <h1>Already have an account ? </h1>
 
-        <Link to="/auth/login" className="nav-link border-b-1 border-stone-700">
+        <Link to="/login" className="nav-link border-b-1 border-stone-700">
           Sign in
         </Link>
       </div>

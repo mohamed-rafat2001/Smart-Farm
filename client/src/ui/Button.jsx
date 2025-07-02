@@ -4,7 +4,6 @@ const Button = styled.button`
   transition-property: all;
   cursor: pointer;
 
-  border: 1px solid gray;
   padding: 10px 35px;
   transition-duration: 300ms;
 

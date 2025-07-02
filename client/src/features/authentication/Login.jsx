@@ -89,10 +89,7 @@ function Login() {
       <div className="flex justify-center gap-x-1 pt-4 text-xl text-stone-400">
         <h1>Don’t have an account ? </h1>
 
-        <Link
-          to="/auth/signup"
-          className="nav-link border-b-1 border-stone-700"
-        >
+        <Link to="/signup" className="nav-link border-b-1 border-stone-700">
           Sign Up
         </Link>
       </div>

@@ -16,37 +16,47 @@ import ContactPage from '../pages/ContactPage.jsx';
 import RegisterPage from '../pages/RegisterPage.jsx';
 import Login from '../features/authentication/Login.jsx';
 import SignUp from '../features/authentication/SignUp.jsx';
+import WelcomePage from '../pages/WelcomePage.jsx';
 export const Router = createBrowserRouter([
   {
-    path: '/',
     element: <HomePage />,
-  },
-  {
-    path: '/about',
-    element: <AboutPage />,
-  },
-  {
-    path: '/pricing',
-    element: <PricingPage />,
-  },
-  {
-    path: '/contact',
-    element: <ContactPage />,
-  },
-  {
-    path: '/auth',
-    element: <RegisterPage />,
     children: [
       {
-        path: '/auth/login',
-        element: <Login />,
+        index: true,
+        element: <Navigate replace to="/home" />,
       },
       {
-        path: '/auth/signup',
-        element: <SignUp />,
+        path: '/home',
+        element: <WelcomePage />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
+      },
+      {
+        path: '/pricing',
+        element: <PricingPage />,
+      },
+      {
+        path: '/contact',
+        element: <ContactPage />,
+      },
+      {
+        element: <RegisterPage />,
+        children: [
+          {
+            path: '/login',
+            element: <Login />,
+          },
+          {
+            path: '/signup',
+            element: <SignUp />,
+          },
+        ],
       },
     ],
   },
+
   {
     path: '/app',
     element: <AppLayout />,

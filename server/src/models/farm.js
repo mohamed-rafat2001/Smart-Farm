@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 const farmSchema = new mongoose.Schema(
 	{
+		firebaseUrl: String,
 		name: {
 			type: String,
 			required: [true, "name is required"],

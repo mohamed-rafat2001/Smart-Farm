@@ -11,7 +11,7 @@ function Header() {
       </div>
 
       <nav className="flex w-[50%] justify-evenly">
-        <NavLink to="/" className="nav-link">
+        <NavLink to="/home" className="nav-link">
           Home
         </NavLink>
         <NavLink to="/pricing" className="nav-link">
@@ -25,11 +25,11 @@ function Header() {
         </NavLink>
       </nav>
       <div className="flex w-[20%] items-center justify-evenly">
-        <Link to="/auth/login" className="nav-link">
+        <Link to="/login" className="nav-link">
           Login
         </Link>
         <Link
-          to="/auth/signUp"
+          to="/signUp"
           className="rounded-md border-1 border-amber-100 px-5 py-3 hover:bg-[#474055]"
         >
           Sign up
