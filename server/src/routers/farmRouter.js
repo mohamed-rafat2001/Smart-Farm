@@ -17,5 +17,6 @@ Router.route("/").post(createFarm).get(userFarms);
 Router.route("/:id")
 	.get(getFarm)
 	.delete(deletefarmByUser)
+
 	.patch(updateFarmByUser);
 export default Router;

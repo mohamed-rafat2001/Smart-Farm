@@ -1,4 +1,6 @@
+import FarmDashboard from '../features/farm/FarmDashboard';
+
 function FarmDashPage() {
-  return <div>FarmDashPage</div>;
+  return <FarmDashboard />;
 }
 export default FarmDashPage;

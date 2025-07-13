@@ -74,7 +74,8 @@ function Footer() {
           <div className="w-[100%] text-stone-400 @3xl:w-1/2">
             <h1>
               © All rights reserved
-              <span className="text-md text-white">Smart Farm</span>. Powered by
+              <span className="text-md text-white"> Smart Farm</span>. Powered
+              by
               <span className="text-md text-white"> Mohamed Rafat.</span>
             </h1>
           </div>

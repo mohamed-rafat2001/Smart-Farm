@@ -20,7 +20,10 @@ export const protect = catchAsync(async (req, res, next) => {
 
 	// check if user still exist
 	const user = await userModel.findById(decode._id);
-	if (!user) return next("the user belong to this token does'nt exist", 404);
+	if (!user)
+		return next(
+			new appError("the user belong to this token does'nt exist", 404)
+		);
 
 	req.user = user;
 

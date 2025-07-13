@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 const farmSchema = new mongoose.Schema(
 	{
-		firebaseUrl: String,
+		firebaseUrl: {
+			type: String,
+			trim: true,
+			required: [true, "Url is required"],
+			unique: true,
+		},
 		name: {
 			type: String,
 			required: [true, "name is required"],
@@ -23,7 +28,6 @@ const farmSchema = new mongoose.Schema(
 		active: {
 			type: Boolean,
 			default: true,
-			select: false,
 		},
 	},
 
@@ -34,7 +38,7 @@ farmSchema.pre(/^find/, function (next) {
 		path: "owner",
 		select: "profileImg firstName lastName",
 	});
-	this.find({ active: { $ne: false } });
+
 	next();
 });
 export default mongoose.model("FarmModel", farmSchema);

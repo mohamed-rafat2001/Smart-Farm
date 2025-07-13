@@ -43,10 +43,9 @@ export const updateUser = updateDoc(UserModel, "admin", [
 	"firstName",
 	"lastName",
 	"email",
-	"password",
-	"confirmPassword",
 	"phoneNumber",
 	"role",
+	"active",
 ]);
 
 // @desc	get user by params

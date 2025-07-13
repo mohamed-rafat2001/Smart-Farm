@@ -1,8 +1,6 @@
+import UserFarms from '../features/farm/UserFarms';
+
 function FarmsPage() {
-	return (
-		<div>
-			<h1>Farms</h1>
-		</div>
-	);
+  return <UserFarms />;
 }
 export default FarmsPage;

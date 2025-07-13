@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 function HomePage() {
   return (
-    <div className="@container">
+    <>
       <Header />
       <main className="mt-0 grid grid-rows-[auto_auto_auto]">
         {/* section container */}
@@ -14,7 +14,7 @@ function HomePage() {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
 export default HomePage;

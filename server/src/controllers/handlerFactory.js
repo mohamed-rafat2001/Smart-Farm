@@ -1,11 +1,10 @@
 import appError from "../utils/appError.js";
 import catchAsync from "../middelwares/catchAsync.js";
 import response from "../utils/handelRespone.js";
-import filterObject from "../utils/filterObject.js";
 import validationBody from "../utils/validationBody.js";
 
 // delete doc
-export const handelBodyError = (object) => {
+const handelBodyError = (object, next) => {
 	if (Object.keys(object).length == 0)
 		return next(new appError("please provide all fields", 400));
 };
@@ -16,11 +15,14 @@ export const deleteByOwner = (Model) =>
 		// check if id is provided
 		if (!_id) return next(new appError("please provide id", 400));
 		// delete doc
-		const doc = await Model.findOneAndUpdate(
-			{ _id, owner: req.user._id },
-			{ active: false },
-			{ new: true, runValidators: true }
-		);
+
+		const doc = await Model.findOne({ _id, owner: req.user._id });
+		if (doc.active == true) {
+			doc.active = false;
+		} else {
+			doc.active = true;
+		}
+		await doc.save();
 		// check if doc is deleted
 		if (!doc) return next(new appError("doc not deleted", 400));
 
@@ -35,7 +37,7 @@ export const getByParams = (Model) =>
 		// find doc
 		const doc = await Model.findById(id);
 		// check if doc is found
-		if (!doc || !_id) return next(new appError("doc not found", 404));
+		if (!doc || !id) return next(new appError("doc not found", 404));
 		// send response
 		response(res, 200, doc);
 	});
@@ -57,7 +59,7 @@ export const CreateByOwner = (Model, fields) =>
 		// get feilds from req.body
 		const objectFromBody = validationBody(req.body, fields);
 		// check if all fields are provided
-		handelBodyError(objectFromBody);
+		handelBodyError(objectFromBody, next);
 		// create doc
 		const doc = await Model.create({
 			...objectFromBody,
@@ -70,17 +72,19 @@ export const CreateByOwner = (Model, fields) =>
 	});
 
 // update by owner
-export const updateByOwner = (Model, ...fields) =>
+export const updateByOwner = (Model, fields) =>
 	catchAsync(async (req, res, next) => {
 		const _id = req.params.id;
 		// check if id is provided
 		if (!_id) return next(new appError("please provide id", 400));
 		// get feilds from req.body
-		const filter = filterObject(req.body, ...fields);
+		const objectFromBody = validationBody(req.body, fields);
+		// check if all fields are provided
+		handelBodyError(objectFromBody, next);
 		// update doc
 		const doc = await Model.findOneAndUpdate(
 			{ _id, owner: req.user._id },
-			filter,
+			{ ...objectFromBody },
 			{
 				new: true,
 				runValidators: true,
@@ -98,7 +102,7 @@ export const createDocByAdmin = (Model, fields) =>
 		const objectFromBody = validationBody(req.body, fields);
 
 		// check if all fields are provided
-		handelBodyError(objectFromBody);
+		handelBodyError(objectFromBody, next);
 		// create doc
 		const doc = await Model.create({
 			...objectFromBody,
@@ -127,7 +131,11 @@ export const deactivateDoc = (Model, role) =>
 			// check if id is provided
 			if (!id) return next(new appError("please provide id", 400));
 			// deactivate doc
-			const doc = await Model.findByIdAndUpdate(id, { active: false });
+			const doc = await Model.findByIdAndUpdate(
+				id,
+				{ active: false },
+				{ new: true, runValidators: true }
+			);
 			// check if doc is deactivate
 			if (!doc) return next(new appError("doc not found", 404));
 			// send response
@@ -135,7 +143,11 @@ export const deactivateDoc = (Model, role) =>
 		} else {
 			const _id = req.user._id;
 			// deactivate doc
-			const doc = await Model.findByIdAndUpdate(_id, { active: false });
+			const doc = await Model.findByIdAndUpdate(
+				_id,
+				{ active: false },
+				{ new: true, runValidators: true }
+			);
 			// check if doc is deactivate
 			if (!doc) return next(new appError("doc not found", 404));
 			// send response
@@ -149,7 +161,7 @@ export const updateDoc = (Model, role, fields) =>
 		const objectFromBody = validationBody(req.body, fields);
 
 		// check if all fields are provided
-		handelBodyError(objectFromBody);
+		handelBodyError(objectFromBody, next);
 		// update doc
 		if (role == "admin") {
 			// get id from req.params
@@ -157,10 +169,14 @@ export const updateDoc = (Model, role, fields) =>
 			// check if id is provided
 			if (!id) return next(new appError("please provide id", 400));
 			// update doc
-			const doc = await Model.findByIdAndUpdate(id, ...objectFromBody, {
-				new: true,
-				runValidators: true,
-			});
+			const doc = await Model.findByIdAndUpdate(
+				id,
+				{ ...objectFromBody },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
 			// check if doc is updated
 			if (!doc) return next(new appError("doc not found", 404));
 			//send response
@@ -168,10 +184,14 @@ export const updateDoc = (Model, role, fields) =>
 		} else {
 			const _id = req.user._id;
 			// update doc
-			const doc = await Model.findByIdAndUpdate(_id, ...objectFromBody, {
-				new: true,
-				runValidators: true,
-			});
+			const doc = await Model.findByIdAndUpdate(
+				_id,
+				{ ...objectFromBody },
+				{
+					new: true,
+					runValidators: true,
+				}
+			);
 			// check if doc is updated
 			if (!doc) return next(new appError("doc not found", 404));
 			//send response

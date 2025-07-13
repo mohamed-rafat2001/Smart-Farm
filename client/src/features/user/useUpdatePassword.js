@@ -9,12 +9,6 @@ function useUpdatePassword() {
     data: updatedData,
   } = useMutation({
     mutationFn: updatePassword,
-    onSuccess: () => {
-      console.log(updatedData);
-    },
-    onError: (err) => {
-      console.log(err);
-    },
   });
   return { update, error, isUpdated, updatedData };
 }

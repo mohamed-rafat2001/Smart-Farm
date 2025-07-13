@@ -5,7 +5,7 @@ function RegisterPage() {
   const currentLocation = location?.pathname.split('/')[2];
   console.log(location.pathname.split('/')[2]);
   return (
-    <div className="@container mt-5 flex h-screen items-center justify-center">
+    <div className="mt-5 flex h-screen items-center justify-center">
       <div className="w-[90%] rounded-lg bg-[#272727] p-7 @lg:w-[70%] @3xl:w-[60%] @4xl:w-[45%]">
         <h1 className="text-center text-3xl font-bold capitalize">
           {currentLocation}

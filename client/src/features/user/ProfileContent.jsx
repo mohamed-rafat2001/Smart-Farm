@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import PersonalDetails from './PersonalDetails';
-import ProfileSettings from './ProfileSettings';
+import UpdatePassword from './UpdatePassword';
 
 function ProfileContent() {
   const [Default, setDefault] = useState(true);
   return (
     <div>
-      <div className="my-5 font-bold">
+      <div className="my-5 border-b-1 border-stone-600 font-bold text-stone-500">
         <button
           type="button"
-          className="switch-link me-15"
+          className={`switch-link ${Default && 'active'} me-15 pb-2`}
           onClick={() => {
             setDefault(true);
           }}
@@ -18,15 +18,15 @@ function ProfileContent() {
         </button>
         <button
           type="button"
-          className="switch-link"
+          className={`switch-link pb-2 ${!Default && 'active'}`}
           onClick={() => {
             setDefault(false);
           }}
         >
-          Settings
+          Update Password
         </button>
       </div>
-      {Default ? <PersonalDetails /> : <ProfileSettings />}
+      {Default ? <PersonalDetails /> : <UpdatePassword />}
     </div>
   );
 }

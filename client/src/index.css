@@ -7,12 +7,14 @@ html {
   padding: 0; */
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  @apply transition-all duration-300 ease-in-out;
 }
 
 @layer components {
   .nav-link {
     transition-property: color;
     transition-duration: 300ms;
+
     &:hover {
       color: #c9fa75;
     }
@@ -24,14 +26,13 @@ html {
     transition-property: all;
     transition-duration: 300ms;
     cursor: pointer;
-    border-bottom: 1.5px solid rgb(185, 185, 185);
+
     &:hover {
-      color: rgb(101, 101, 241);
-      border-bottom: 1.5px solid blue;
+      color: white;
     }
     &.active {
-      color: rgb(101, 101, 241);
-      border-bottom: 1.5px solid blue;
+      color: white;
+      border-bottom: 2px solid rgb(185, 185, 185);
     }
   }
 }

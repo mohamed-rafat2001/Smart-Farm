@@ -10,8 +10,8 @@ function UpdatePassword() {
     reset();
   }
   return (
-    <form className="w-[100%]" onSubmit={handleSubmit(submit)}>
-      <div className="grid w-[100%] grid-cols-2 justify-between border-b-1 border-gray-300 py-5 sm:grid-cols-3">
+    <form className="mt-10 w-[100%]" onSubmit={handleSubmit(submit)}>
+      <div className="grid w-[100%] grid-cols-2 items-center justify-between pb-5 sm:grid-cols-3">
         <label htmlFor="password" className="text-sm font-bold capitalize">
           Current Password
         </label>
@@ -20,7 +20,7 @@ function UpdatePassword() {
           id="password"
           name="password"
           type="password"
-          className="rounded-sm border-1 border-stone-300 p-2 focus:border-blue-600 focus:outline-0"
+          className="rounded-lg bg-[#1b2127] p-2 text-stone-400 focus:outline-0"
           {...register('password', {
             required: 'Password is required',
           })}
@@ -31,7 +31,7 @@ function UpdatePassword() {
           </p>
         )}
       </div>
-      <div className="grid w-[100%] grid-cols-2 justify-between border-b-1 border-gray-300 py-5 sm:grid-cols-3">
+      <div className="grid w-[100%] grid-cols-2 items-center justify-between py-5 sm:grid-cols-3">
         <label htmlFor="newPassword" className="text-sm font-bold capitalize">
           New Password
         </label>
@@ -40,7 +40,7 @@ function UpdatePassword() {
           id="newPassword"
           name="newPassword"
           type="password"
-          className="rounded-sm border-1 border-stone-300 p-2 focus:border-blue-600 focus:outline-0"
+          className="rounded-lg bg-[#1b2127] p-2 text-stone-400 focus:outline-0"
           {...register('newPassword', {
             required: 'New Password is required',
           })}
@@ -51,7 +51,7 @@ function UpdatePassword() {
           </p>
         )}
       </div>
-      <div className="grid w-[100%] grid-cols-2 justify-between border-b-1 border-gray-300 py-5 sm:grid-cols-3">
+      <div className="grid w-[100%] grid-cols-2 items-center justify-between py-5 sm:grid-cols-3">
         <label
           htmlFor="confirmPassword"
           className="text-sm font-bold capitalize"
@@ -63,7 +63,7 @@ function UpdatePassword() {
           id="confirmPassword"
           name="confirmNewPassword"
           type="password"
-          className="rounded-sm border-1 border-stone-300 p-2 focus:border-blue-600 focus:outline-0"
+          className="rounded-lg bg-[#1b2127] p-2 text-stone-400 focus:outline-0"
           {...register('confirmNewPassword', {
             required: 'confirm password is required',
             validate: (value) =>
@@ -77,10 +77,10 @@ function UpdatePassword() {
           </p>
         )}
       </div>
-      <div className="mt-5 flex w-[100%] items-center justify-center gap-x-5 font-bold text-gray-500">
+      <div className="mt-5 flex w-[100%] items-center justify-center gap-x-5 font-bold">
         <Button
-          backgroundcolor="black"
-          color="rgb(101, 101, 241)"
+          color="#c9fa75"
+          className="rounded-full bg-[#283039] font-bold"
           disabled={isUpdated}
         >
           Update Password

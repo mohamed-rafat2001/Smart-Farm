@@ -3,7 +3,7 @@ import defaultProfileImg from '../../assets/defaultProfileImage.jpeg';
 function ProfileHeader() {
   const { data } = useAuth();
   return (
-    <div className="flex w-[100%] flex-col gap-x-7 border-b-1 border-stone-400 text-stone-500 min-[450px]:flex-row">
+    <div className="flex w-[100%] flex-col gap-x-7 min-[450px]:flex-row">
       <div className="mb-3 h-30 w-30">
         <img
           src={defaultProfileImg}
@@ -11,11 +11,11 @@ function ProfileHeader() {
         />
       </div>
       <div className="mb-3 min-[450px]:mt-5">
-        <h1 className="text-xl font-bold text-black">
+        <h1 className="text-xl font-bold">
           {data?.firstName + '  ' + data?.lastName}
         </h1>
 
-        <p className="text-xs">{data?.email}</p>
+        <p className="text-xs text-stone-400">{data?.email}</p>
       </div>
     </div>
   );

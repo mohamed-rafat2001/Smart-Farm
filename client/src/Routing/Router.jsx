@@ -17,6 +17,9 @@ import RegisterPage from '../pages/RegisterPage.jsx';
 import Login from '../features/authentication/Login.jsx';
 import SignUp from '../features/authentication/SignUp.jsx';
 import WelcomePage from '../pages/WelcomePage.jsx';
+import SingleFarmPage from '../pages/SingleFarmPage.jsx';
+import DevicesPage from '../pages/DevicesPage.jsx';
+import InsightsPage from '../pages/InsightsPage.jsx';
 export const Router = createBrowserRouter([
   {
     element: <HomePage />,
@@ -66,10 +69,10 @@ export const Router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate replace to="/app/profile" />,
+            element: <Navigate replace to="/app/Dashboard" />,
           },
           {
-            path: '/app/farmsDashboard',
+            path: '/app/Dashboard',
             element: <FarmDashPage />,
           },
           {
@@ -79,6 +82,18 @@ export const Router = createBrowserRouter([
           {
             path: '/app/farms',
             element: <FarmsPage />,
+          },
+          {
+            path: '/app/farms/:id',
+            element: <SingleFarmPage />,
+          },
+          {
+            path: '/app/devices',
+            element: <DevicesPage />,
+          },
+          {
+            path: '/app/insights',
+            element: <InsightsPage />,
           },
 
           {
